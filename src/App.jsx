@@ -4,7 +4,7 @@ import Workouts from './components/workouts'
 import NavBar from './components/navbar'
 import NewWorkouts from './components/newWorkout'
 
-
+//git testi
 function App() {
   const [user, setUser] = useState(null)
   const [page, setPage] = useState('workouts')
