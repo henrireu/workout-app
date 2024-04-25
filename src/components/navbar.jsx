@@ -1,6 +1,13 @@
+import workoutService from '../services/workouts'
 import dumbbell from '../pictures/dumbbell.jpg'
 
 const Navbar = ({ user, setPage, setUser }) => {
+    const handleLogOut = () => {
+      setUser(null)
+      workoutService.setToken(null)
+      window.localStorage.removeItem('user')
+    }
+
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
@@ -28,7 +35,7 @@ const Navbar = ({ user, setPage, setUser }) => {
           ) : (
             <div className="ms-auto">
                <span className="navbar-text me-2">{user.username}</span>
-               <button onClick={() => setUser(null)} className="btn btn-outline-primary" type="button">Log Out</button>
+               <button onClick={handleLogOut} className="btn btn-outline-primary" type="button">Log Out</button>
             </div>
           )}
           

@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
-import userService from '../services/users'
 import loginService from '../services/login'
+import userService from '../services/users'
+import workoutService from '../services/workouts'
 import guyImage from '../pictures/guy2.jpg'
 
-const Login = ({ setUser, setPage}) => {
+const Login = ({ setUser, setPage, user}) => {
     const [kayttajatunnus, setKayttajatunnus] = useState('')
     const [salasana, setSalasana] = useState('')
     const [luoKayttajaTila, setLuoKayttajaTila] = useState(false)
@@ -18,6 +19,12 @@ const Login = ({ setUser, setPage}) => {
           const kayttaja = await loginService.login({
             username, password,
           })
+          //localstorage kohta
+          window.localStorage.setItem(
+            'user', JSON.stringify(kayttaja)
+          )
+          workoutService.setToken(kayttaja.token)
+          //localstorage kohta
           setKayttajatunnus('')
           setSalasana('')
           setUser(kayttaja)

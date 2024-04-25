@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import workoutService from './services/workouts'
 import Login from './components/login'
 import Workouts from './components/workouts'
 import NavBar from './components/navbar'
@@ -9,6 +10,14 @@ function App() {
   const [user, setUser] = useState(null)
   const [page, setPage] = useState('workouts')
 
+  useEffect(() => {
+    const loggedUser = window.localStorage.getItem('user')
+    if (loggedUser) {
+      const user = JSON.parse(loggedUser)
+      setUser(user)
+      workoutService.setToken(user.token)
+    }
+  },[])
 
   return (
     <div>
