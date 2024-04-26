@@ -34,4 +34,18 @@ const create = async newObject => {
   return response.data
 }
 
-export default { getAll, create, setToken, getAllByUser } 
+const deleteWorkout = async (id) => {
+  const config = {
+    headers: { Authorization: token },
+  }
+
+  try {
+    const response = await axios.delete(`${baseUrl}/${id}`, config);
+    return response.data;
+  } catch (error) {
+    console.error('Error deleting workout', error);
+    throw error
+  }
+}
+
+export default { getAll, create, setToken, getAllByUser, deleteWorkout } 

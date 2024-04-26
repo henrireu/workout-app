@@ -163,7 +163,7 @@ const CreateMoves = ( { workoutName, date, user, setPage }) => {
           <ul className="list-group list-group-flush">
             {exercises.slice(0, 10).map((exercise, index) => (
               <li className="list-group-item d-flex justify-content-between align-items-center" key={index}>
-                <span>{index + 1}. {exercise.exerciseName} - {exercise.weight} kg x {exercise.reps}</span>
+                <span>{index + 1}. {exercise.name} - {exercise.weight} kg x {exercise.reps}</span>
                 <button onClick={() => handleDeleteExercise(index)} type="button" className="btn btn-danger btn-sm">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -175,7 +175,7 @@ const CreateMoves = ( { workoutName, date, user, setPage }) => {
           <ul className="list-group list-group-flush">
             {exercises.slice(10, 20).map((exercise, index) => (
               <li className="list-group-item d-flex justify-content-between align-items-center" key={index + 10}>
-                <span>{index + 11}. {exercise.exerciseName} - {exercise.weight} kg x {exercise.reps}</span>
+                <span>{index + 11}. {exercise.name} - {exercise.weight} kg x {exercise.reps}</span>
                 <button onClick={() => handleDeleteExercise(index + 10)} type="button" className="btn btn-danger btn-sm">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -187,7 +187,7 @@ const CreateMoves = ( { workoutName, date, user, setPage }) => {
           <ul className="list-group list-group-flush">
             {exercises.slice(20, 30).map((exercise, index) => (
               <li className="list-group-item d-flex justify-content-between align-items-center" key={index + 20}>
-                <span>{index + 21}. {exercise.exerciseName} - {exercise.weight} kg x {exercise.reps}</span>
+                <span>{index + 21}. {exercise.name} - {exercise.weight} kg x {exercise.reps}</span>
                 <button onClick={() => handleDeleteExercise(index + 20)} type="button" className="btn btn-danger btn-sm">
                   <span aria-hidden="true">&times;</span>
                 </button>
