@@ -79,7 +79,9 @@ const WorkoutList = ({ userWorkouts, deleteWorkout }) => {
               <div onClick={() => handleWorkoutClick(index)} key={workout.id} className="list-group-item cursorpointer">
                 {showWholeWorkout && index === workoutIndex ? (
                   <div>
-                    <Workout workout={workout} deleteWorkout={deleteWorkout} index={index}/>
+                    <Workout workout={workout} deleteWorkout={deleteWorkout} 
+                      index={index} setShowWholeWorkout={setShowWholeWorkout}
+                    />
                     <WorkoutExercises workout={workout} />
                   </div>
                 ) : (
@@ -91,10 +93,10 @@ const WorkoutList = ({ userWorkouts, deleteWorkout }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-const Workout = ( {workout, deleteWorkout, index }) => {
+const Workout = ( {workout, deleteWorkout, index, setShowWholeWorkout }) => {
 
   const handleDeleteExercise = async (id) => {
     console.log(id)
@@ -114,7 +116,9 @@ const Workout = ( {workout, deleteWorkout, index }) => {
     <div className="d-flex w-100 justify-content-between">
       <h5 className="mb-1">{workout.name}</h5>
       <small>{workout.date}</small>
-      <button onClick={() => handleDeleteExercise(workout.id)}>delete</button>
+      <button onClick={() => handleDeleteExercise(workout.id)} type="button" className="btn btn-danger btn-sm">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
   )
 }
