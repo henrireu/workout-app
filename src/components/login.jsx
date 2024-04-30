@@ -84,7 +84,7 @@ const CreateUser = ({ setLuoKayttajaTila, setUser }) => {
   
       } catch (error){
         console.error(error)
-        setVirheViesti('error creating account')
+        setVirheViesti('This username already have account')
         setTimeout(() => {
           setVirheViesti(null)
         }, 3000)
@@ -147,12 +147,12 @@ const CreateUser = ({ setLuoKayttajaTila, setUser }) => {
                       />
                       <label className="form-label" htmlFor="form3Example4cdg">Repeat your password</label>
                     </div>
-                    <div className="form-check d-flex justify-content-center mb-5">
+                    {/*<div className="form-check d-flex justify-content-center mb-5">
                       <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
                       <label className="form-check-label" htmlFor="form2Example3g">
                         I agree all statements in <a href="#!" className="text-body"><u>Terms of service</u></a>
                       </label>
-                    </div>
+                </div>*/}
                     <div className="d-flex justify-content-center">
                       <button type="submit" data-mdb-button-init data-mdb-ripple-init className="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
                     </div>
@@ -200,7 +200,7 @@ const SignIn = ({ handleKirjaudu, kayttajatunnus, setKayttajatunnus, salasana, s
                         value={kayttajatunnus}
                         onChange={({ target }) => setKayttajatunnus(target.value)} 
                       />
-                      <label className="form-label" htmlFor="form2Example17">Email address</label>
+                      <label className="form-label" htmlFor="form2Example17">Username</label>
                     </div>
                     <div data-mdb-input-init className="form-outline mb-4">
                       <input
@@ -215,13 +215,13 @@ const SignIn = ({ handleKirjaudu, kayttajatunnus, setKayttajatunnus, salasana, s
                     <div className="pt-1 mb-4">
                       <button data-mdb-button-init data-mdb-ripple-init className="btn btn-dark btn-lg btn-block" type="submit">Login</button>
                     </div>
-                    <a className="small text-muted" href="#!">Forgot password?</a>
+                    {/*<a className="small text-muted" href="#!">Forgot password?</a>*/}
                     <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
                       Don't have an account?{' '}
                       <a onClick={() => setLuoKayttajaTila(true)} href="#!" style={{ color: "#393f81" }}>Register here</a>
                     </p>
-                    <a href="#!" className="small text-muted">Terms of use.</a>
-                    <a href="#!" className="small text-muted">Privacy policy</a>
+                    {/*<a href="#!" className="small text-muted">Terms of use.</a>
+                    <a href="#!" className="small text-muted">Privacy policy</a>*/}
                   </form>
                 </div>
               </div>

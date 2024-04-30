@@ -38,12 +38,12 @@ const Workouts = ({user, setUser}) => {
     )
   }
 
-  const testi = async () => {
+  /*const testi = async () => {
     const testii = workoutService.getAllByUser(userId)
     console.log("testi:", testii)
     console.log(userId)
     console.log(userWorkouts)
-  }
+  }*/
 
   const deleteWorkout = (id) => {
     const newWorkouts = [...userWorkouts]
@@ -53,8 +53,8 @@ const Workouts = ({user, setUser}) => {
 
   return (
     <div>
-       <h2 className="text-center mb-4">Workouts by {user.username}</h2>
-       <button onClick={testi}>testi</button>
+       <h1 className="text-center mb-4">Workouts by {user.username}</h1>
+       {/*<button onClick={testi}>testi</button>*/}
        <WorkoutList userWorkouts={userWorkouts} deleteWorkout={deleteWorkout}/>
     </div>
   )
@@ -115,7 +115,7 @@ const Workout = ( {workout, deleteWorkout, index, setShowWholeWorkout }) => {
   return (
     <div className="d-flex w-100 justify-content-between">
       <h5 className="mb-1">{workout.name}</h5>
-      <small>{workout.date}</small>
+      <h6>{workout.date}</h6>
       <button onClick={() => handleDeleteExercise(workout.id)} type="button" className="btn btn-danger btn-sm">
         <span aria-hidden="true">&times;</span>
       </button>

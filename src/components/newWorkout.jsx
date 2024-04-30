@@ -48,8 +48,7 @@ const CreateWorkout = ({ user, setPage }) => {
   if (addMove) {
     return (
       <div>
-         <button onClick={deleteWholeWorkout} className="btn btn-danger">Delete whole workout</button>
-         <CreateMoves workoutName={workoutName} date={date} handleBack={handleBack}
+         <CreateMoves workoutName={workoutName} date={date} handleBack={handleBack} deleteWholeWorkout={deleteWholeWorkout}
           user={user} setPage={setPage} exercises={exercises} setExercises={setExercises}
         />
       </div>
@@ -58,7 +57,6 @@ const CreateWorkout = ({ user, setPage }) => {
 
   return (
     <div className="container">
-      <button onClick={deleteWholeWorkout} className="btn btn-danger">Delete whole workout</button>
       <div className="row justify-content-center">
         <div className="col-md-6">
           <h2 className="text-center mb-4">Create Workout</h2>
@@ -76,7 +74,7 @@ const CreateWorkout = ({ user, setPage }) => {
               />
             </div>
             {/* Treenin nimi */}
-            <div className="mb-3">
+            {/*<div className="mb-3">
               <label htmlFor="workoutName" className="form-label">Workout Name</label>
               <input
                 type="text"
@@ -86,9 +84,29 @@ const CreateWorkout = ({ user, setPage }) => {
                 onChange={(e) => setWorkoutName(e.target.value)}
                 required
               />
+            </div>*/}
+            <div className="mb-3">
+              <label htmlFor="workoutName" className="form-label">Workout Name</label>
+              <select
+                className="form-select"
+                id="workoutName"
+                value={workoutName}
+                onChange={(e) => setWorkoutName(e.target.value)}
+                required
+              >
+                <option value="">Choose...</option>
+                <option value="Whole body">Whole body</option>
+                <option value="Lower body">Lower body</option>
+                <option value="Upper body">Upper body</option>
+                <option value="Push">Push</option>
+                <option value="Pull">Pull</option>
+                <option value="Legs">Legs</option>
+                <option value="Other">Other</option>
+              </select>
             </div>
             {/* Submit-nappi */}
-            <button type="submit" className="btn btn-primary btn-block">Create</button>
+            <button type="submit" className="btn btn-primary btn-block">To exercises</button>
+            <button onClick={deleteWholeWorkout} className="btn btn-danger ms-4">Delete whole workout</button>
           </form>
         </div>
       </div>
@@ -96,10 +114,11 @@ const CreateWorkout = ({ user, setPage }) => {
   )
 }
 
-const CreateMoves = ( { workoutName, date, user, setPage, exercises, setExercises, handleBack }) => {
+const CreateMoves = ( { workoutName, date, user, setPage, exercises, setExercises, handleBack, deleteWholeWorkout }) => {
   const [name, setName] = useState('')
   const [weight, setWeight] = useState('')
   const [reps, setReps] = useState('')
+  const [message, setMessage] = useState(null)
 
   const handleAddExercise = () => {
     if (name && reps > 0) {
@@ -118,6 +137,9 @@ const CreateMoves = ( { workoutName, date, user, setPage, exercises, setExercise
 
 
   const handleSaveWorkout = async () => {
+    if (exercises.length > 0) {
+
+    
     try {
       const userId = await userService.GetUserId(user.username)
       const wholeWorkout = {
@@ -132,11 +154,16 @@ const CreateMoves = ( { workoutName, date, user, setPage, exercises, setExercise
       console.log('Saved workout:', exercises)
       setExercises([])
       setName('')
+      setMessage('workout created')
       setTimeout(() => {
+        setMessage(null)
         setPage('workouts')
-      }, 1000)
+      }, 2000)
     } catch (error) {
       console.error('Error creating workout', error)
+    }
+    } else {
+      alert("Your workout must contain at least 1 exercise")
     }
   }
 
@@ -153,6 +180,9 @@ const CreateMoves = ( { workoutName, date, user, setPage, exercises, setExercise
   return (
     <div className="container">
       <h2 className="text-center mb-4">Workout Form</h2>
+      {message && (
+        <div className="alert alert-success" role="alert">{message}</div>
+      )}
       <button className="btn btn-warning" onClick={handleBack}>Back</button>
       <div className="mb-3 d-flex align-items-center">
         <label htmlFor="exerciseName" className="form-label">Exercise Name</label>
@@ -185,8 +215,7 @@ const CreateMoves = ( { workoutName, date, user, setPage, exercises, setExercise
         <button type="button" className="btn btn-primary" onClick={handleAddExercise}>Add Exercise</button>
       </div>
       <div className="mb-3">
-        <button type="button" className="btn btn-success ms-2" onClick={handleSaveWorkout}>Save Workout</button>
-
+       
       </div>
       {/*workout details */}
       <div className="row">
@@ -195,6 +224,8 @@ const CreateMoves = ( { workoutName, date, user, setPage, exercises, setExercise
         <ExercisesListed exercises={exercises} handleDeleteExercise={handleDeleteExercise} indexes={[10, 20]} />
         <ExercisesListed exercises={exercises} handleDeleteExercise={handleDeleteExercise} indexes={[20, 30]} />
       </div>
+      <button type="button" className="btn btn-success ms-2 mt-4" onClick={handleSaveWorkout}>Save Workout</button>
+      <button onClick={deleteWholeWorkout} className="btn btn-danger mt-4 ms-4">Delete whole workout</button>
     </div>
   )
 }
