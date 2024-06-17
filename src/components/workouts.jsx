@@ -23,7 +23,6 @@ const Workouts = ({user, setUser}) => {
     const fetchUserWorkouts = async () => {
       if (userId) {
         const workouts = await workoutService.getAllByUser(userId)
-        console.log(workouts)
         setUserWorkouts(workouts)
       }
     }
@@ -99,7 +98,6 @@ const WorkoutList = ({ userWorkouts, deleteWorkout }) => {
 const Workout = ( {workout, deleteWorkout, index, setShowWholeWorkout }) => {
 
   const handleDeleteExercise = async (id) => {
-    console.log(id)
     try {
       const confirmed = window.confirm('Are you sure, that you want to delete workout?')
       if (confirmed) {

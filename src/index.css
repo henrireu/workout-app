@@ -46,3 +46,11 @@ p {
 .cursorpointer:hover {
     cursor: pointer;
 }
+
+.marginleft {
+    margin-left: 10px;
+}
+
+.minwidth {
+    width: 100px;
+}

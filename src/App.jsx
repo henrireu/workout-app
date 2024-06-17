@@ -4,11 +4,12 @@ import Login from './components/login'
 import Workouts from './components/workouts'
 import NavBar from './components/navbar'
 import NewWorkouts from './components/newWorkout'
+import Home from './components/home'
 
 //git testi
 function App() {
   const [user, setUser] = useState(null)
-  const [page, setPage] = useState('workouts')
+  const [page, setPage] = useState('home')
 
   useEffect(() => {
     const loggedUser = window.localStorage.getItem('user')
@@ -31,6 +32,8 @@ function App() {
         </div>
       ) : page === 'newWorkout' ? (
         <NewWorkouts user={user} setUser={setUser} page={page} setPage={setPage}/>
+      ) : page === 'home' ? (
+        <Home />
       ) : (
         <div>404 - page not found</div>
       )}

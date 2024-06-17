@@ -12,7 +12,7 @@ const GetUserId = async (username) => {
         const data = response.data;
         const user = data.find(user => username === user.username);
         if (user) {
-            console.log(user.username, " ja userid ", user.id);
+            //console.log(user.username, " ja userid ", user.id);
             return user.id;
         } else {
             console.log('User not found');

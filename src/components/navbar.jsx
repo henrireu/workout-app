@@ -12,24 +12,25 @@ const Navbar = ({ user, setPage, setUser }) => {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <div className="d-flex align-items-center">
-            {/* Logo */}
             <a className="navbar-brand" href="#">
               <img src={dumbbell} alt="Logo" height="30" className="d-inline-block align-top" />
             </a>
-            {/* Home */}
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <a onClick={() => setPage('home')} className="nav-link" href="#">Home</a>
+              </li>
+            </ul>
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <a onClick={() => setPage('workouts')} className="nav-link" href="#">Your Workouts</a>
               </li>
             </ul>
-            {/*Create workout*/}
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <a onClick={() => setPage('newWorkout')} className="nav-link" href="#">New workout</a>
               </li>
             </ul>
           </div>
-          {/* Login */}
           { user === null ? (
             <button onClick={() => setPage('login')} className="btn btn-outline-primary" type="button">Login</button>
           ) : (
@@ -41,7 +42,7 @@ const Navbar = ({ user, setPage, setUser }) => {
           
         </div>
       </nav>
-    );
-  };
+    )
+  }
   
   export default Navbar;

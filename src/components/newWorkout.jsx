@@ -173,10 +173,6 @@ const CreateMoves = ( { workoutName, date, user, setPage, exercises, setExercise
     setExercises(newExercises)
   }
 
-  const handleDeleteWorkout = () => {
-
-  }
-
   return (
     <div className="container">
       <h2 className="text-center mb-4">Workout Form</h2>
